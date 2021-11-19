@@ -12,9 +12,9 @@ export function Home() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const requestAllCharacters = () => {
+  useEffect(() => {
     dispatch(getAllCharacters());
-  };
+  }, []);
 
   useEffect(() => {
     console.log("allCharacters ===> ", allCharacters);
@@ -23,8 +23,6 @@ export function Home() {
   return (
     <div>
       <SearchBar />
-      <div>Home de Marvel-MediaMonks</div>
-      <button onClick={requestAllCharacters}>GET_ALL_CHARACTERS</button>
       <div className='flexCards'>
         {allCharacters &&
           allCharacters.map((e, index) => {
