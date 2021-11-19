@@ -9,7 +9,8 @@ import {SearchBar} from "./components/SearchBar/SearchBar";
 function App() {
   return (
     <div className='App'>
-      <Route path='/' component={NavBar} />
+      <Route exact path='/' component={NavBar} />
+      <Route path='/:id' component={NavBar} />
       <Route exact path='/' component={Home} />
       <Route exact path='/:id' component={CharacterDetail} />
     </div>
