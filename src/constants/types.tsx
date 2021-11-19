@@ -5,6 +5,7 @@ export interface action {
 
 export interface rootState {
   characters: Character[] | undefined;
+  filterSearchBy: string | undefined;
 }
 
 export interface Character {
