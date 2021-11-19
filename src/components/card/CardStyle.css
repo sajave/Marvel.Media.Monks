@@ -1,0 +1,41 @@
+.cardContainer {
+  width: 250px;
+  height: 350px;
+  background-color: black;
+  border: solid 2px #0000;
+
+  margin: 40px;
+}
+
+.thumbnailContainer {
+  width: 250px;
+  height: 250px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.thumbnail {
+  flex-shrink: 20;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.redDivider {
+  height: 5px;
+  background-color: #ed1d24;
+  margin-bottom: 10px;
+}
+
+.nameTitle {
+  color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  text-align: left;
+}
