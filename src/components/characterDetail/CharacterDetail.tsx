@@ -12,6 +12,10 @@ export function CharacterDetail() {
   const {id} = useParams<{id?: string}>();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     allCharacters?.forEach((e) => {
       if (e.id.toString() === id) {
         setCharacter(e);
@@ -37,45 +41,48 @@ export function CharacterDetail() {
       </div>
       <hr className='redDividerHeader'></hr>
 
-      <div className='descriptionContainer'>
-        {character?.description === "" ? null : (
+      {character?.description === "" ? null : (
+        <div className='descriptionContainer'>
           <div className='descriptionTitle'>DESCRIPTION</div>
-        )}
-        <div className='description'>{character?.description}</div>
-      </div>
-
-      <div className='comicsContainer'>
-        <div className='comicsTitle'>COMICS</div>
-        <div>{`${character?.comics.items[0].resourceURI}`}</div>
-        <div>
-          {character?.comics.items &&
-            character?.comics.items.map((e, index) => {
-              return <div key={index}>{e.name}</div>;
-            })}
+          <div className='description'>{character?.description}</div>
         </div>
-      </div>
+      )}
 
-      <div className='seriesContainer'>
-        <div className='seriesTitle'>SERIES</div>
-        <div>{`${character?.comics.items[0].resourceURI}`}</div>
-        <div>
-          {character?.series.items &&
-            character?.series.items.map((e, index) => {
-              return <div key={index}>{e.name}</div>;
-            })}
+      {character?.comics.items.length === 0 ? null : (
+        <div className='comicsContainer'>
+          <div className='comicsTitle'>COMICS</div>
+          <div>
+            {character?.comics.items &&
+              character?.comics.items.map((e, index) => {
+                return <div key={index}>{e.name}</div>;
+              })}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className='storiesContainer'>
-        <div className='storiesTitle'>STORIES</div>
-        <div>{`${character?.comics.items[0].resourceURI}`}</div>
-        <div>
-          {character?.stories.items &&
-            character?.stories.items.map((e, index) => {
-              return <div key={index}>{e.name}</div>;
-            })}
+      {character?.series.items.length === 0 ? null : (
+        <div className='seriesContainer'>
+          <div className='seriesTitle'>SERIES</div>
+          <div>
+            {character?.series.items &&
+              character?.series.items.map((e, index) => {
+                return <div key={index}>{e.name}</div>;
+              })}
+          </div>
         </div>
-      </div>
+      )}
+
+      {character?.stories.items.length === 0 ? null : (
+        <div className='storiesContainer'>
+          <div className='storiesTitle'>STORIES</div>
+          <div>
+            {character?.stories.items &&
+              character?.stories.items.map((e, index) => {
+                return <div key={index}>{e.name}</div>;
+              })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
