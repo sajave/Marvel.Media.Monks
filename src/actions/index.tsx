@@ -9,6 +9,7 @@
 import axios from "axios";
 
 export const GET_ALL_CHARACTERS = "GET_ALL_CHARACTERS";
+export const SET_FILTER_SEARCH_BY = "SET_FILTER_SEARCH_BY";
 
 export function getAllCharacters() {
   return async function (dispatch: any) {
@@ -22,6 +23,19 @@ export function getAllCharacters() {
       });
     } catch (error) {
       console.log('Error in "getAllCharacters" action', error);
+    }
+  };
+}
+
+export function setFilterSearchBy(filterBy: string) {
+  return async function (dispatch: any) {
+    try {
+      dispatch({
+        type: SET_FILTER_SEARCH_BY,
+        payload: filterBy,
+      });
+    } catch (error) {
+      console.log('Error in "setFilterSearchBy" action', error);
     }
   };
 }
