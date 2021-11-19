@@ -1,14 +1,21 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {getAllCharacters} from "../../actions";
-import {rootState} from "../../constants/types";
+import {Character, rootState} from "../../constants/types";
 import {Card} from "../card/Card";
 import {SearchBar} from "../SearchBar/SearchBar";
 import "./HomeStyle.css";
 
 export function Home() {
   const allCharacters = useSelector((state: rootState) => state.characters);
+  const filterSearchBy = useSelector(
+    (state: rootState) => state.filterSearchBy
+  );
+
+  const [search, setSearch] = useState<string>("");
+  const [aux, setAux] = useState<Character[] | undefined>(allCharacters);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -16,16 +23,28 @@ export function Home() {
     dispatch(getAllCharacters());
   }, []);
 
-  useEffect(() => {
-    console.log("allCharacters ===> ", allCharacters);
-  }, [allCharacters]);
+  const onSearch = (searchInput: string) => {
+    setSearch(searchInput);
+  };
+
+  const filteredBy = () => {
+    if (filterSearchBy === "name") {
+      setAux(
+        allCharacters?.filter((e) => {
+          return e.name.includes(search);
+        })
+      );
+    }
+  };
+
+  console.log("aux //// ", aux);
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar onSearch={onSearch} />
       <div className='flexCards'>
-        {allCharacters &&
-          allCharacters.map((e, index) => {
+        {aux &&
+          aux.map((e, index) => {
             return (
               <div
                 className='cardBtn'
