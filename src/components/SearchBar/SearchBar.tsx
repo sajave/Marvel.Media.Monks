@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllCharacters} from "../../actions";
-import {rootState} from "../../constants/types";
+import {useState} from "react";
+import {FilterBtn} from "../filterBtn/FilterBtn";
 import {SearchBarIcon} from "../searchIcon/SearchIcon";
 import "./SearchBarStyle.css";
 
-export function SearchBar() {
-  const allCharacters = useSelector((state: rootState) => state.characters);
-  const [filter, setFilter] = useState("name");
+type Props = {
+  onSearch: (searchInput: string) => void;
+};
+
+export function SearchBar({onSearch}: Props) {
+  const [searchInput, setSearchInput] = useState<string>("");
+  onSearch(searchInput);
 
   return (
     <header className='headerSearch'>
@@ -15,10 +17,14 @@ export function SearchBar() {
         type='text'
         placeholder='Search...'
         className='inputSearch'
-        /* value={search}
-        onChange={(e) => set(e.target.value)} */
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
-      <SearchBarIcon />
+
+      <FilterBtn id='name' />
+      <FilterBtn id='comics' />
+      <FilterBtn id='stories' />
+      <FilterBtn id='series' />
     </header>
   );
 }
