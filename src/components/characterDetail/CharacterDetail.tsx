@@ -43,15 +43,38 @@ export function CharacterDetail() {
         )}
         <div className='description'>{character?.description}</div>
       </div>
+
       <div className='comicsContainer'>
         <div className='comicsTitle'>COMICS</div>
         <div>{`${character?.comics.items[0].resourceURI}`}</div>
-        <img
-          className='imgHeader'
-          src={`${character?.comics.items[0].resourceURI}`}
-          alt='Not available'
-        />
-        <div>{character?.comics.items[0].name}</div>
+        <div>
+          {character?.comics.items &&
+            character?.comics.items.map((e, index) => {
+              return <div key={index}>{e.name}</div>;
+            })}
+        </div>
+      </div>
+
+      <div className='seriesContainer'>
+        <div className='seriesTitle'>SERIES</div>
+        <div>{`${character?.comics.items[0].resourceURI}`}</div>
+        <div>
+          {character?.series.items &&
+            character?.series.items.map((e, index) => {
+              return <div key={index}>{e.name}</div>;
+            })}
+        </div>
+      </div>
+
+      <div className='storiesContainer'>
+        <div className='storiesTitle'>STORIES</div>
+        <div>{`${character?.comics.items[0].resourceURI}`}</div>
+        <div>
+          {character?.stories.items &&
+            character?.stories.items.map((e, index) => {
+              return <div key={index}>{e.name}</div>;
+            })}
+        </div>
       </div>
     </div>
   );
