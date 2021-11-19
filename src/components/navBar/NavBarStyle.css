@@ -1,5 +1,5 @@
 .navbar {
-  height: 80px;
+  height: 6rem;
   max-width: 100%;
   top: 0;
   left: 0;
@@ -17,4 +17,12 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
+}
+
+.Logo {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+
+  width: 5rem;
 }
