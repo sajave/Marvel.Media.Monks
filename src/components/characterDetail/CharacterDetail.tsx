@@ -1,3 +1,4 @@
+import {url} from "inspector";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {useParams} from "react-router";
@@ -25,34 +26,33 @@ export function CharacterDetail() {
   return (
     <div className='characterDetailContainer'>
       <div className='titleHeaderContainer'>
-        <div className='titleHeader'>
-          {character?.name.toUpperCase()}
-          <div className='imgHeaderAndHr'>
-            <div>IMG</div>
-            <div className='redDividerHeader'></div>
-          </div>
-          <div className='descriptionContainer'>
-            {character?.description === "" ? null : (
-              <div className='descriptionTitle'>DESCRIPTION</div>
-            )}
-            <div className='description'>{character?.description}</div>
-          </div>
-        </div>
+        <div className='titleHeader'>{character?.name.toUpperCase()}</div>
+      </div>
+      <div className='imgHeaderAndHr'>
+        <img
+          className='imgHeader'
+          src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`}
+          alt='Not available'
+        />
+      </div>
+      <hr className='redDividerHeader'></hr>
+
+      <div className='descriptionContainer'>
+        {character?.description === "" ? null : (
+          <div className='descriptionTitle'>DESCRIPTION</div>
+        )}
+        <div className='description'>{character?.description}</div>
       </div>
       <div className='comicsContainer'>
-        <div>COMICS</div>
+        <div className='comicsTitle'>COMICS</div>
+        <div>{`${character?.comics.items[0].resourceURI}`}</div>
+        <img
+          className='imgHeader'
+          src={`${character?.comics.items[0].resourceURI}`}
+          alt='Not available'
+        />
+        <div>{character?.comics.items[0].name}</div>
       </div>
     </div>
   );
 }
-
-/* 
-style={{
-  backgroundImage: `url(${character?.thumbnail.path}.${character?.thumbnail.extension}))`,
-  height: "500px",
-}} */
-/* <img
-              className='imgHeader'
-              src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`}
-              alt='Not available'
-            /> */

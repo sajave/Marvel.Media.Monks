@@ -16,27 +16,18 @@
 }
 
 .imgHeaderAndHr {
+  height: 250px;
+
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+
+  background-color: #000;
+  height: 15rem;
 
   padding-bottom: 40px;
 }
-
-.imageContainer {
-}
-
-/* .imgHeaderContainer {
-  width: 1000px;
-  height: 400px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: center;
-  overflow: hidden;
-} */
 
 .imgHeader {
   flex-shrink: 20;
@@ -45,9 +36,11 @@
 }
 
 .redDividerHeader {
+  margin: 0px;
+  width: 100%;
   height: 5px;
   background-color: #ed1d24;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
 .descriptionContainer {
@@ -55,6 +48,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  margin-bottom: 40px;
 }
 
 .descriptionTitle {
@@ -75,4 +70,15 @@
   font-size: 1rem;
 
   text-align: left;
+}
+
+.comicsTitle {
+  color: rgb(0, 0, 0);
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 1.3rem;
+
+  text-align: left;
+
+  margin-bottom: 10px;
 }
