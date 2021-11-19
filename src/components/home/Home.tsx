@@ -27,7 +27,11 @@ export function Home() {
         {allCharacters &&
           allCharacters.map((e, index) => {
             return (
-              <div key={index} onClick={() => history.push(`/${e.id}`)}>
+              <div
+                className='cardBtn'
+                key={index}
+                onClick={() => history.push(`/${e.id}`)}
+              >
                 <Card
                   thumbnail={e.thumbnail}
                   name={e.name}
