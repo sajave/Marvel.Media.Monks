@@ -1,16 +1,19 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
 import {getAllCharacters} from "../../actions";
 import {rootState} from "../../constants/types";
 import {Card} from "../card/Card";
+import {SearchBar} from "../SearchBar/SearchBar";
+import "./HomeStyle.css";
 
 export function Home() {
   const allCharacters = useSelector((state: rootState) => state.characters);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const requestAllCharacters = () => {
     dispatch(getAllCharacters());
-    /* console.log("allCharacters ===> ", allCharacters); */
   };
 
   useEffect(() => {
@@ -19,17 +22,20 @@ export function Home() {
 
   return (
     <div>
+      <SearchBar />
       <div>Home de Marvel-MediaMonks</div>
       <button onClick={requestAllCharacters}>GET_ALL_CHARACTERS</button>
-      <div>
+      <div className='flexCards'>
         {allCharacters &&
-          allCharacters.map((e) => {
+          allCharacters.map((e, index) => {
             return (
-              <Card
-                thumbnail={e.thumbnail}
-                name={e.name}
-                description={e.description}
-              ></Card>
+              <div key={index} onClick={() => history.push(`/${e.id}`)}>
+                <Card
+                  thumbnail={e.thumbnail}
+                  name={e.name}
+                  description={e.description}
+                ></Card>
+              </div>
             );
           })}
       </div>
