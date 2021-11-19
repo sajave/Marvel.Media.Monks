@@ -1,0 +1,78 @@
+.characterDetailContainer {
+  padding: 40px;
+}
+
+.titleHeaderContainer {
+  padding-bottom: 40px;
+}
+
+.titleHeader {
+  color: rgb(0, 0, 0);
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+
+  text-align: left;
+}
+
+.imgHeaderAndHr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 40px;
+}
+
+.imageContainer {
+}
+
+/* .imgHeaderContainer {
+  width: 1000px;
+  height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  overflow: hidden;
+} */
+
+.imgHeader {
+  flex-shrink: 20;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.redDividerHeader {
+  height: 5px;
+  background-color: #ed1d24;
+  margin-bottom: 10px;
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.descriptionTitle {
+  color: rgb(0, 0, 0);
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 1.3rem;
+
+  text-align: left;
+
+  margin-bottom: 10px;
+}
+
+.description {
+  color: rgb(0, 0, 0);
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+
+  text-align: left;
+}
