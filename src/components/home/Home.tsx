@@ -23,21 +23,35 @@ export function Home() {
     dispatch(getAllCharacters());
   }, []);
 
+  useEffect(() => {
+    (function () {
+      if (filterSearchBy === "name") {
+        setAux(
+          allCharacters?.filter((e) => {
+            return e.name.includes(search);
+          })
+        );
+      }
+
+      if (filterSearchBy === "comics") {
+        setAux(
+          allCharacters?.filter((e) => {
+            let comicsFound = e.comics.items.filter((f) => {
+              return f.name.includes(search);
+            });
+            return comicsFound;
+          })
+        );
+      }
+    })();
+  }, [search]);
+
   const onSearch = (searchInput: string) => {
     setSearch(searchInput);
   };
 
-  const filteredBy = () => {
-    if (filterSearchBy === "name") {
-      setAux(
-        allCharacters?.filter((e) => {
-          return e.name.includes(search);
-        })
-      );
-    }
-  };
-
-  console.log("aux //// ", aux);
+  console.log("aux   ////// ", aux);
+  console.log("search   --- ", search);
 
   return (
     <div>
