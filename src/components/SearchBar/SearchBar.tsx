@@ -41,7 +41,7 @@ export function SearchBar({onSearch}: Props) {
     <header className='headerSearch'>
       <input
         type='text'
-        placeholder='Search...'
+        placeholder={`Search by ${filterSearchBy}...`}
         className='inputSearch'
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
