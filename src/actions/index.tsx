@@ -7,15 +7,20 @@
 // (the hash value is the md5 digest of 1abcd1234)
 
 import axios from "axios";
+import {hashFunction} from "../constants/hashFunction";
 
+const API_KEY_PUBLIC = process.env.REACT_APP_API_KEY_PUBLIC;
 export const GET_ALL_CHARACTERS = "GET_ALL_CHARACTERS";
 export const SET_FILTER_SEARCH_BY = "SET_FILTER_SEARCH_BY";
+export const GET_COMICS_BY_ID = "GET_COMICS_BY_ID";
 
 export function getAllCharacters() {
   return async function (dispatch: any) {
     try {
+      const hashObj = hashFunction();
+
       const allCharacters = await axios.get(
-        "https://gateway.marvel.com/v1/public/characters?orderBy=name&limit=50&ts=1&apikey=7a33e5d7cd2f2dc74e72da066dbdbb08&hash=e8efe55ad6cab76d07ca902b473516e4"
+        `https://gateway.marvel.com/v1/public/characters?orderBy=name&limit=50&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
       );
       dispatch({
         type: GET_ALL_CHARACTERS,
@@ -36,6 +41,25 @@ export function setFilterSearchBy(filterBy: string) {
       });
     } catch (error) {
       console.log('Error in "setFilterSearchBy" action', error);
+    }
+  };
+}
+
+export function getComicsById(id: string) {
+  return async function (dispatch: any) {
+    try {
+      const hashObj = hashFunction();
+      console.log("hashObj", hashObj);
+
+      const allComics = await axios.get(
+        `https://gateway.marvel.com:443/v1/public/characters/${id}/comics?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+      );
+      dispatch({
+        type: GET_COMICS_BY_ID,
+        payload: allComics.data.data.results,
+      });
+    } catch (error) {
+      console.log('Error in "getComicsById" action', error);
     }
   };
 }
