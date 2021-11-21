@@ -1,15 +1,15 @@
-import {url} from "inspector";
 import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
+import {getComicsById} from "../../actions";
 import {rootState, Character} from "../../constants/types";
 import "./CharacterDetailStyle.css";
 
 export function CharacterDetail() {
   const allCharacters = useSelector((state: rootState) => state.characters);
   const [character, setCharacter] = useState<Character>();
-  /* const [character, setCharacter] = useState({}); */
-  const {id} = useParams<{id?: string}>();
+  const dispatch = useDispatch();
+  const {id} = useParams<{id: string}>();
 
   useEffect(() => {
     window.scrollTo({
@@ -23,6 +23,10 @@ export function CharacterDetail() {
       }
       return;
     });
+  }, []);
+
+  useEffect(() => {
+    dispatch(getComicsById(id));
   }, []);
 
   console.log("character", character);
