@@ -1,0 +1,22 @@
+.coverContainer {
+  width: 7rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0px 7px 30px 7px;
+}
+
+.coverImg {
+  height: 7rem;
+}
+
+.titleCover {
+  height: 55px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
