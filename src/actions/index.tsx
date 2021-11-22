@@ -52,7 +52,7 @@ export function getComicsById(id: string) {
       console.log("hashObj", hashObj);
 
       const allComics = await axios.get(
-        `https://gateway.marvel.com:443/v1/public/characters/${id}/comics?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+        `https://gateway.marvel.com/v1/public/characters/${id}/comics?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
       );
       dispatch({
         type: GET_COMICS_BY_ID,
