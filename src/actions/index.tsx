@@ -7,7 +7,7 @@
 // (the hash value is the md5 digest of 1abcd1234)
 
 import axios from "axios";
-import {hashFunction} from "../constants/hashFunction";
+import {hashFunction} from "../utils/hashFunction";
 
 const API_KEY_PUBLIC = process.env.REACT_APP_API_KEY_PUBLIC;
 export const GET_ALL_CHARACTERS = "GET_ALL_CHARACTERS";
@@ -49,7 +49,6 @@ export function getComicsById(id: string) {
   return async function (dispatch: any) {
     try {
       const hashObj = hashFunction();
-      console.log("hashObj", hashObj);
 
       const allComics = await axios.get(
         `https://gateway.marvel.com/v1/public/characters/${id}/comics?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`

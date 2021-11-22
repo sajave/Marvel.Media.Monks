@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllCharacters, setFilterSearchBy} from "../../actions";
-import {rootState} from "../../constants/types";
-import {SearchBarIcon} from "../searchIcon/SearchIcon";
+import {useDispatch} from "react-redux";
+import {setFilterSearchBy} from "../../actions";
+
 import "./filterBtn.css";
 
 type Props = {

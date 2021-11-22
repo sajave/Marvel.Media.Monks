@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
 import {getComicsById} from "../../actions";
@@ -23,13 +23,13 @@ export function CharacterDetail() {
       }
       return;
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     dispatch(getComicsById(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log("character", character);
 
   return (
     <div className='characterDetailContainer'>

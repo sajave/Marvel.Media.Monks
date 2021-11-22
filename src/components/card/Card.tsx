@@ -1,6 +1,4 @@
-import React from "react";
-import {useSelector} from "react-redux";
-import {rootState, Image} from "../../constants/types";
+import {Image} from "../../constants/types";
 import "./CardStyle.css";
 
 type Props = {
@@ -10,8 +8,6 @@ type Props = {
 };
 
 export function Card({thumbnail, name, description}: Props) {
-  const allCharacters = useSelector((state: rootState) => state.characters);
-
   return (
     <div className='cardContainer'>
       <div className='thumbnailContainer'>

@@ -13,6 +13,7 @@ export const filterFunction = (
   }
 
   if (filterSearchBy === "comics") {
+    // eslint-disable-next-line array-callback-return
     const characters = allCharacters?.filter((character: any) => {
       let aux = character.comics.items.some((comic: any) =>
         comic.name.toLowerCase().includes(search)
@@ -25,6 +26,7 @@ export const filterFunction = (
   }
 
   if (filterSearchBy === "stories") {
+    // eslint-disable-next-line array-callback-return
     const characters = allCharacters?.filter((character: any) => {
       let aux = character.stories.items.some((story: any) =>
         story.name.toLowerCase().includes(search)
@@ -37,6 +39,7 @@ export const filterFunction = (
   }
 
   if (filterSearchBy === "series") {
+    // eslint-disable-next-line array-callback-return
     const characters = allCharacters?.filter((character: any) => {
       let aux = character.stories.items.some((story: any) =>
         story.name.toLowerCase().includes(search)

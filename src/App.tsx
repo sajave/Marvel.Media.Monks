@@ -1,10 +1,8 @@
-import React from "react";
 import {Route} from "react-router-dom";
 import "./App.css";
 import {CharacterDetail} from "./components/characterDetail/CharacterDetail";
 import {Home} from "./components/home/Home";
 import {NavBar} from "./components/navBar/NavBar";
-import {SearchBar} from "./components/SearchBar/SearchBar";
 
 function App() {
   return (
