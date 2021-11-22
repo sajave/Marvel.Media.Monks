@@ -14,6 +14,7 @@ export const GET_ALL_CHARACTERS = "GET_ALL_CHARACTERS";
 export const SET_FILTER_SEARCH_BY = "SET_FILTER_SEARCH_BY";
 export const GET_COMICS_BY_ID = "GET_COMICS_BY_ID";
 export const GET_SERIES_BY_ID = "GET_SERIES_BY_ID";
+export const GET_STORIES_BY_ID = "GET_STORIES_BY_ID";
 
 export function getAllCharacters() {
   return async function (dispatch: any) {
@@ -78,6 +79,24 @@ export function getSeriesById(id: string) {
       });
     } catch (error) {
       console.log('Error in "getSeriesById" action', error);
+    }
+  };
+}
+
+export function getStoriesById(id: string) {
+  return async function (dispatch: any) {
+    try {
+      const hashObj = hashFunction();
+
+      const allStories = await axios.get(
+        `https://gateway.marvel.com/v1/public/characters/${id}/stories?limit=5&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+      );
+      dispatch({
+        type: GET_STORIES_BY_ID,
+        payload: allStories.data.data.results,
+      });
+    } catch (error) {
+      console.log('Error in "getStoriesById" action', error);
     }
   };
 }
