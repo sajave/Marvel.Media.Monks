@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {getAllCharacters} from "../../actions";
 import {Character, rootState} from "../../constants/types";
+import {filterFunction} from "../../utils/filterFunction";
 import {Card} from "../card/Card";
 import {SearchBar} from "../SearchBar/SearchBar";
 import "./HomeStyle.css";
@@ -24,34 +25,12 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    (function () {
-      if (filterSearchBy === "name") {
-        setAux(
-          allCharacters?.filter((e) => {
-            return e.name.includes(search);
-          })
-        );
-      }
-
-      if (filterSearchBy === "comics") {
-        setAux(
-          allCharacters?.filter((e) => {
-            let comicsFound = e.comics.items.filter((f) => {
-              return f.name.includes(search);
-            });
-            return comicsFound;
-          })
-        );
-      }
-    })();
-  }, [search]);
+    filterFunction(allCharacters, filterSearchBy, setAux, search);
+  }, [search, filterSearchBy]);
 
   const onSearch = (searchInput: string) => {
     setSearch(searchInput);
   };
-
-  console.log("aux   ////// ", aux);
-  console.log("search   --- ", search);
 
   return (
     <div>
