@@ -19,6 +19,18 @@
   font-weight: bold;
 }
 
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 7rem;
+  border-left: 1px solid #a3a3a3;
+  border-right: 1px solid #a3a3a3;
+}
+
 .Logo {
   color: white;
   font-size: 30px;

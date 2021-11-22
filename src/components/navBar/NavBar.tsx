@@ -14,11 +14,13 @@ export function NavBar() {
       ) : (
         <div className='Title'>CHARACTERS</div>
       )}
-      <img
-        src='https://upload.wikimedia.org/wikipedia/commons/b/b9/Marvel_Logo.svg'
-        alt='MARVEL'
-        className='Logo'
-      />
+      <div className='logoContainer'>
+        <img
+          src='https://upload.wikimedia.org/wikipedia/commons/b/b9/Marvel_Logo.svg'
+          alt='MARVEL'
+          className='Logo'
+        />
+      </div>
     </header>
   );
 }
