@@ -1,22 +1,48 @@
-.coverContainer {
-  width: 7rem;
+.coverComicContainer {
+  width: 10rem;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  align-items: flex-start;
 
-  margin: 0px 7px 30px 7px;
+  margin: 0px 40px 20px 0px;
+}
+
+.coverSerieContainer {
+  width: 10rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  margin: 0px 40px 20px 0px;
+}
+
+.coverImgComic {
+  height: 15rem;
 }
 
 .coverImg {
-  height: 7rem;
+  height: 14rem;
+  width: 10rem;
+  margin-bottom: 1rem;
+
+  -webkit-box-shadow: 0px 0px 28px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 28px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 28px -5px rgba(0, 0, 0, 0.75);
 }
 
 .titleCover {
+  font-weight: bold;
+
   height: 55px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  text-align: left;
 }
