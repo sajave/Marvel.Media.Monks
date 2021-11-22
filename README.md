@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# MediaMonks challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Para iniciar
 
-## Available Scripts
+- Para instalar ir al directorio `/marvel-mediamonks` y ejecutar:
 
-In the project directory, you can run:
+  ```
+  npm install
+  ```
 
-### `yarn start`
+- Una vez finalizada la instalación ejecutar:
+  ```
+  npm start
+  ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Funcionamiento
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+La estructura general de componentes es:
 
-### `yarn test`
+> Home > Card > CharacterDetail
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Al iniciar la app, se hace 1 request al endpoint "/v1/public/characters/" ordenados por orden alfabetico y con un limite de 50 (para simplificar). La respuesta se almacenan en el store de Redux (de ahora en adelante solo se utiliza lo almacenado).
 
-### `yarn build`
+El componente Home muestra los componentes de SearchBar (que contiene ademas los botones de filtrado) y un listado de componente Cards por cada personaje que hay almacenado en el store.
+Los botones de filtrado setean el store en "name", "comics", "stories" y "series", y el SearchBar consulta cuál está seleccionado para así realizar la búsqueda del personaje.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+El componente Card recibe el nombre e imagen del personaje. Al ser clickeado redirije a la pagina de detalles que muestra el componente CharacterDetail.
+CharacterDetail realiza 3 request\* y los almacena en el store:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- /v1/public/characters/id/comics
+- /v1/public/characters/id/series
+- /v1/public/characters/id/stories
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+\*todos con limite de 10 objetos para simplificar
 
-### `yarn eject`
+Una vez recibida y almacenada la respuesta, consulta los comics, series y stories que contiene el personaje y muestra una tarjeta con la portada y el nombre.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Consideraciones
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- A muchos personajes les faltan muchos datos, por lo que puede que haya imagenes con el texto alternativo "Not available", o sin la sección de descripción.
+- El diseño, colores, logos y tipografía fueron elegidos para asimilarse a la página oficial de Marvel.
+  Antes de comenzar a codear planteé un diseño en figma y un vez que estaba conforme con la idea comencé con el desarrollo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<div style= 'white-space: nowrap;' >
+  <img width='auto' height='400' src="./assets/Home.png" />
+  <img width='auto' height='400' src="./assets/Character.png" />
+</div>
