@@ -2,7 +2,7 @@ import "./CoverPage.css";
 
 type Props = {
   title: string;
-  thumbnail: string;
+  thumbnail: string | undefined;
 };
 
 export const CoverPage = ({title, thumbnail}: Props) => {
