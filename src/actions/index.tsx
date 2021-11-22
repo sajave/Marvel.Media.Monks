@@ -13,6 +13,7 @@ const API_KEY_PUBLIC = process.env.REACT_APP_API_KEY_PUBLIC;
 export const GET_ALL_CHARACTERS = "GET_ALL_CHARACTERS";
 export const SET_FILTER_SEARCH_BY = "SET_FILTER_SEARCH_BY";
 export const GET_COMICS_BY_ID = "GET_COMICS_BY_ID";
+export const GET_SERIES_BY_ID = "GET_SERIES_BY_ID";
 
 export function getAllCharacters() {
   return async function (dispatch: any) {
@@ -51,7 +52,7 @@ export function getComicsById(id: string) {
       const hashObj = hashFunction();
 
       const allComics = await axios.get(
-        `https://gateway.marvel.com/v1/public/characters/${id}/comics?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+        `https://gateway.marvel.com/v1/public/characters/${id}/comics?limit=5&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
       );
       dispatch({
         type: GET_COMICS_BY_ID,
@@ -59,6 +60,24 @@ export function getComicsById(id: string) {
       });
     } catch (error) {
       console.log('Error in "getComicsById" action', error);
+    }
+  };
+}
+
+export function getSeriesById(id: string) {
+  return async function (dispatch: any) {
+    try {
+      const hashObj = hashFunction();
+
+      const allSeries = await axios.get(
+        `https://gateway.marvel.com/v1/public/characters/${id}/series?limit=5&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+      );
+      dispatch({
+        type: GET_SERIES_BY_ID,
+        payload: allSeries.data.data.results,
+      });
+    } catch (error) {
+      console.log('Error in "getSeriesById" action', error);
     }
   };
 }
