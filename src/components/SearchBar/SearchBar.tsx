@@ -22,7 +22,9 @@ export function SearchBar({onSearch}: Props) {
     "unSelected",
   ]);
 
-  onSearch(searchInput.toLowerCase());
+  useEffect(() => {
+    onSearch(searchInput.toLowerCase());
+  });
 
   useEffect(() => {
     let filterColors: string[] = [];
@@ -34,6 +36,7 @@ export function SearchBar({onSearch}: Props) {
       }
     }
     setColors(filterColors);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterSearchBy]);
 
   return (
