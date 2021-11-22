@@ -7,6 +7,7 @@ export interface rootState {
   characters: Character[] | undefined;
   comicsById: Comic[] | undefined;
   seriesById: Series[] | undefined;
+  storiesById: Story[] | undefined;
   filterSearchBy: string | undefined;
 }
 
@@ -172,3 +173,21 @@ export interface Series {
   previous: SeriesSummary;
 }
 /* Comic types */
+
+/* Story types */
+export interface Story {
+  id: number;
+  title: string;
+  description: string;
+  resourceURI: string;
+  type: string;
+  modified: Date;
+  thumbnail: Image | null;
+  comics: ComicList;
+  series: SeriesList;
+  events: EventList;
+  characters: CharacterList;
+  creators: CreatorList;
+  originalissue: ComicSummary;
+}
+/* Story types */
