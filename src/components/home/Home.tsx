@@ -31,7 +31,7 @@ export function Home() {
   useEffect(() => {
     filterFunction(allCharacters, filterSearchBy, setFilteredSearch, search);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, filterSearchBy]);
+  }, [allCharacters, search, filterSearchBy, dispatch]);
 
   const onSearch = (searchInput: string) => {
     setSearch(searchInput);
@@ -40,7 +40,7 @@ export function Home() {
   return (
     <div>
       <SearchBar onSearch={onSearch} />
-      {filteredSearch ? (
+      {allCharacters ? (
         <div className='flexCards'>
           {filteredSearch &&
             filteredSearch.map((e, index) => {
