@@ -1,12 +1,15 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
-import {getComicsById} from "../../actions";
+import {getComicsById, getSeriesById} from "../../actions";
 import {rootState, Character} from "../../constants/types";
+import {CoverPage} from "../coverPage/CoverPage";
 import "./CharacterDetailStyle.css";
 
 export function CharacterDetail() {
   const allCharacters = useSelector((state: rootState) => state.characters);
+  const comicsById = useSelector((state: rootState) => state.comicsById);
+  const seriesById = useSelector((state: rootState) => state.seriesById);
   const [character, setCharacter] = useState<Character>();
   const dispatch = useDispatch();
   const {id} = useParams<{id: string}>();
@@ -28,6 +31,7 @@ export function CharacterDetail() {
 
   useEffect(() => {
     dispatch(getComicsById(id));
+    dispatch(getSeriesById(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -52,19 +56,36 @@ export function CharacterDetail() {
         </div>
       )}
 
-      {character?.comics.items.length === 0 ? null : (
-        <div className='comicsContainer'>
-          <div className='comicsTitle'>COMICS</div>
-          <div>
-            {character?.comics.items &&
-              character?.comics.items.map((e, index) => {
-                return <div key={index}>{e.name}</div>;
-              })}
-          </div>
-        </div>
-      )}
+      <div className='comicsTitle'>COMICS</div>
+      <div className='comicsContainer'>
+        {comicsById &&
+          comicsById.map((comic, index) => {
+            return (
+              <CoverPage
+                title={comic.title}
+                thumbnail={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                key={index}
+              />
+            );
+          })}
+      </div>
+      {/* //////////////////////////////////////////////////////////////////////////////////// */}
+      <div className='comicsTitle'>SERIES</div>
+      <div className='comicsContainer'>
+        {seriesById &&
+          seriesById.map((serie, index) => {
+            return (
+              <div>
+                <CoverPage
+                  title={serie.title}
+                  thumbnail={`${serie.thumbnail.path}.${serie.thumbnail.extension}`}
+                />
+              </div>
+            );
+          })}
+      </div>
 
-      {character?.series.items.length === 0 ? null : (
+      {/* {character?.series.items.length === 0 ? null : (
         <div className='seriesContainer'>
           <div className='seriesTitle'>SERIES</div>
           <div>
@@ -74,7 +95,7 @@ export function CharacterDetail() {
               })}
           </div>
         </div>
-      )}
+      )} */}
 
       {character?.stories.items.length === 0 ? null : (
         <div className='storiesContainer'>
