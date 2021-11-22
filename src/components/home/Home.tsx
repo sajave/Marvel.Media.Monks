@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {getAllCharacters} from "../../actions";
 import {Character, rootState} from "../../constants/types";
 import {filterFunction} from "../../utils/filterFunction";
 import {Card} from "../card/Card";
+import LoadingSpinner from "../loadingSpinner/Loading";
 import {SearchBar} from "../SearchBar/SearchBar";
 import "./HomeStyle.css";
 
@@ -15,17 +16,21 @@ export function Home() {
   );
 
   const [search, setSearch] = useState<string>("");
-  const [aux, setAux] = useState<Character[] | undefined>(allCharacters);
+  const [filteredSearch, setFilteredSearch] = useState<Character[] | undefined>(
+    allCharacters
+  );
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllCharacters());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    filterFunction(allCharacters, filterSearchBy, setAux, search);
+    filterFunction(allCharacters, filterSearchBy, setFilteredSearch, search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, filterSearchBy]);
 
   const onSearch = (searchInput: string) => {
@@ -35,24 +40,28 @@ export function Home() {
   return (
     <div>
       <SearchBar onSearch={onSearch} />
-      <div className='flexCards'>
-        {aux &&
-          aux.map((e, index) => {
-            return (
-              <div
-                className='cardBtn'
-                key={index}
-                onClick={() => history.push(`/${e.id}`)}
-              >
-                <Card
-                  thumbnail={e.thumbnail}
-                  name={e.name}
-                  description={e.description}
-                ></Card>
-              </div>
-            );
-          })}
-      </div>
+      {filteredSearch ? (
+        <div className='flexCards'>
+          {filteredSearch &&
+            filteredSearch.map((e, index) => {
+              return (
+                <div
+                  className='cardBtn'
+                  key={index}
+                  onClick={() => history.push(`/${e.id}`)}
+                >
+                  <Card
+                    thumbnail={e.thumbnail}
+                    name={e.name}
+                    description={e.description}
+                  ></Card>
+                </div>
+              );
+            })}
+        </div>
+      ) : (
+        <LoadingSpinner />
+      )}
     </div>
   );
 }
