@@ -66,13 +66,15 @@ export function CharacterDetail() {
               <CoverPage
                 title={comic.title}
                 thumbnail={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                classNameContainer={"coverComicContainer"}
+                classNameImg={"coverImgComic"}
                 key={index}
               />
             );
           })}
       </div>
 
-      <div className='comicsTitle'>SERIES</div>
+      <div className='seriesTitle'>SERIES</div>
       <div className='comicsContainer'>
         {seriesById &&
           seriesById.map((serie, index) => {
@@ -80,22 +82,24 @@ export function CharacterDetail() {
               <CoverPage
                 title={serie.title}
                 thumbnail={`${serie.thumbnail.path}.${serie.thumbnail.extension}`}
+                classNameContainer={"coverSerieContainer"}
+                classNameImg={"coverSerieImg"}
                 key={index}
               />
             );
           })}
       </div>
 
-      <div className='comicsTitle'>STORIES</div>
+      <div className='storiesTitle'>STORIES</div>
       <div className='comicsContainer'>
         {storiesById &&
           storiesById.map((storie, index) => {
-            console.log("=====storie:", storie);
-
             return (
               <CoverPage
                 title={storie.title}
                 thumbnail={`${storie.thumbnail?.path}.${storie.thumbnail?.extension}`}
+                classNameContainer={"coverComicContainer"}
+                classNameImg={"coverComicImg"}
                 key={index}
               />
             );
