@@ -23,7 +23,6 @@ export const filterFunction = (
       }
     });
     setFilteredSearch(characters);
-    console.log("//////////////");
     return;
   }
 
