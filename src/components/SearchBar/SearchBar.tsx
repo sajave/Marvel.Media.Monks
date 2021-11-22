@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {rootState} from "../../constants/types";
 import {FilterBtn} from "../filterBtn/FilterBtn";
-import {SearchBarIcon} from "../searchIcon/SearchIcon";
 import "./SearchBarStyle.css";
 
 type Props = {
@@ -23,7 +22,7 @@ export function SearchBar({onSearch}: Props) {
     "unSelected",
   ]);
 
-  onSearch(searchInput);
+  onSearch(searchInput.toLowerCase());
 
   useEffect(() => {
     let filterColors: string[] = [];

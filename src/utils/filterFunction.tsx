@@ -6,7 +6,7 @@ export const filterFunction = (
 ) => {
   if (filterSearchBy === "name") {
     const aux = allCharacters?.filter((e: any) => {
-      return e.name.includes(search);
+      return e.name.toLowerCase().includes(search);
     });
     setFilteredSearch(aux);
     return;
@@ -15,7 +15,7 @@ export const filterFunction = (
   if (filterSearchBy === "comics") {
     const characters = allCharacters?.filter((character: any) => {
       let aux = character.comics.items.some((comic: any) =>
-        comic.name.includes(search)
+        comic.name.toLowerCase().includes(search)
       );
       if (aux) {
         return character;
@@ -27,7 +27,7 @@ export const filterFunction = (
   if (filterSearchBy === "stories") {
     const characters = allCharacters?.filter((character: any) => {
       let aux = character.stories.items.some((story: any) =>
-        story.name.includes(search)
+        story.name.toLowerCase().includes(search)
       );
       if (aux) {
         return character;
@@ -39,7 +39,7 @@ export const filterFunction = (
   if (filterSearchBy === "series") {
     const characters = allCharacters?.filter((character: any) => {
       let aux = character.stories.items.some((story: any) =>
-        story.name.includes(search)
+        story.name.toLowerCase().includes(search)
       );
       if (aux) {
         return character;
