@@ -7,6 +7,17 @@
   align-items: center;
 }
 
+@media screen and (max-width: 600px) {
+  .headerSearch {
+    background-color: #c4c4c4;
+    height: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
 .groupBtn {
   display: flex;
   flex-direction: row;
