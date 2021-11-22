@@ -53,7 +53,7 @@ export function getComicsById(id: string) {
       const hashObj = hashFunction();
 
       const allComics = await axios.get(
-        `https://gateway.marvel.com/v1/public/characters/${id}/comics?limit=5&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+        `https://gateway.marvel.com/v1/public/characters/${id}/comics?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
       );
       dispatch({
         type: GET_COMICS_BY_ID,
@@ -71,7 +71,7 @@ export function getSeriesById(id: string) {
       const hashObj = hashFunction();
 
       const allSeries = await axios.get(
-        `https://gateway.marvel.com/v1/public/characters/${id}/series?limit=5&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+        `https://gateway.marvel.com/v1/public/characters/${id}/series?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
       );
       dispatch({
         type: GET_SERIES_BY_ID,
@@ -89,7 +89,7 @@ export function getStoriesById(id: string) {
       const hashObj = hashFunction();
 
       const allStories = await axios.get(
-        `https://gateway.marvel.com/v1/public/characters/${id}/stories?limit=5&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
+        `https://gateway.marvel.com/v1/public/characters/${id}/stories?limit=10&ts=${hashObj.ts}&apikey=${API_KEY_PUBLIC}&hash=${hashObj.hash}`
       );
       dispatch({
         type: GET_STORIES_BY_ID,
