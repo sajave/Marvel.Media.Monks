@@ -2,12 +2,14 @@ import {
   GET_ALL_CHARACTERS,
   GET_COMICS_BY_ID,
   SET_FILTER_SEARCH_BY,
+  GET_SERIES_BY_ID,
 } from "../actions";
 import {action, rootState} from "../constants/types";
 
 const initialState: rootState = {
   characters: undefined,
   comicsById: undefined,
+  seriesById: undefined,
   filterSearchBy: "name",
 };
 
@@ -27,6 +29,11 @@ export default function rootReducer(state = initialState, action: action) {
       return {
         ...state,
         comicsById: action.payload,
+      };
+    case GET_SERIES_BY_ID:
+      return {
+        ...state,
+        seriesById: action.payload,
       };
     default:
       return {...state};
