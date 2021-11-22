@@ -23,6 +23,8 @@ export const filterFunction = (
       }
     });
     setFilteredSearch(characters);
+    console.log("//////////////");
+    return;
   }
 
   if (filterSearchBy === "stories") {
@@ -36,6 +38,7 @@ export const filterFunction = (
       }
     });
     setFilteredSearch(characters);
+    return;
   }
 
   if (filterSearchBy === "series") {
@@ -49,5 +52,6 @@ export const filterFunction = (
       }
     });
     setFilteredSearch(characters);
+    return;
   }
 };
